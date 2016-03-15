@@ -1,0 +1,120 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a done by gopaddle team"
+  version: "v1"
+  title: "Swagger based application"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    name: "API Support"
+    url: "http://www.swagger.io/support"
+    email: "support@swagger.io"
+  license:
+    name: "apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/v1"
+schemes:
+- "http"
+produces:
+- "application/json"
+paths:
+  /demo:
+    get:
+      summary: "demo Type"
+      description: "This endponits for get the specified demo resource"
+      parameters: []
+      responses:
+        200:
+          description: "An array of demo"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/demo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+    post:
+      summary: "demo Type"
+      description: "This endponits for create a new demo resource"
+      parameters: []
+      responses:
+        200:
+          description: "description about created resource of demo"
+          schema:
+            $ref: "#/definitions/demo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+  /demo/{demo_id}:
+    get:
+      summary: "demo Type"
+      description: "This endponits for get the specified demo resource"
+      parameters:
+      - name: "demo_id"
+        in: "path"
+        description: "Fetch resource id of the demo"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "description about created resource of demo"
+          schema:
+            $ref: "#/definitions/demo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+    put:
+      summary: "demo Type"
+      description: "This endponits for update the specified demo resource"
+      parameters:
+      - name: "demo_id"
+        in: "path"
+        description: "Update resource id of the demo"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "description about updated resource of demo"
+          schema:
+            $ref: "#/definitions/demo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+    delete:
+      summary: "demo Type"
+      description: "This endponits for delete the specified demo resource"
+      parameters:
+      - name: "demo_id"
+        in: "path"
+        description: "Delete resource id of the demo"
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "Resource deleted"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  demo:
+    type: "object"
+    properties:
+      demo_id:
+        type: "string"
+        description: "Data field of demo_id"
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+      fields:
+        type: "string"
