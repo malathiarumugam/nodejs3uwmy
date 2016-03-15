@@ -1,0 +1,1 @@
+sed -i 's/^.*version.*,$//g' package.json && npm  install .
